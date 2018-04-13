@@ -19,17 +19,7 @@
 
     <Window.ContextMenu >
         <ContextMenu>
-            <MenuItem Name="WindowMenuStartOnBoot" Header="{DynamicResource StartOnBoot}" IsCheckable="True" Click="MenuItem_Click"/>
             <MenuItem Name="WindowMenuEdgeHide" Header="{DynamicResource HideWhenCloseToEdge}" IsCheckable="True" Click="MenuItem_Click"/>
-            <MenuItem Name="WindowMenuLanguage" Header="{DynamicResource Language}">
-                <MenuItem Name="WindowMenuUserDefault" Header="{DynamicResource UserDefault}" IsCheckable="True" Click="MenuItem_ChangeLanguageClick"/>
-            </MenuItem>
-            <MenuItem Header="{DynamicResource Update}">
-                <MenuItem Name="WindowMenuAutoUpdate" Header="{DynamicResource CheckForUpdatesAutomatically}" IsCheckable="True" Click="MenuItem_Click"/>
-                <MenuItem Name="WindowMenuCheckUpdate" Header="{DynamicResource CheckForUpdates}" Click="MenuItem_Click"/>
-            </MenuItem>
-            <MenuItem Name="WindowMenuAbout" Header="{DynamicResource AboutNetSpeedMonitor}" Click="MenuItem_Click" />
-            <MenuItem Name="WindowMenuExit" Header="{DynamicResource Exit}" Click="MenuItem_Click" />
         </ContextMenu>
     </Window.ContextMenu>
 

@@ -69,6 +69,19 @@ namespace USTC.Software.hanyizhao.NetSpeedMonitor
             
         }
 
+        public static String GetStringResource(String key)
+        {
+            object re = Application.Current.TryFindResource(key);
+            if(re == null)
+            {
+                return "NULL";
+            }
+            else
+            {
+                return re.ToString();
+            }
+        }
+
         public static String GetVersion()
         {
             String nowVersion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();

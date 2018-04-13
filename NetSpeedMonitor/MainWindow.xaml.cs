@@ -36,28 +36,7 @@ namespace USTC.Software.hanyizhao.NetSpeedMonitor
         
         private void InitializeWindowMenu()
         {
-            WindowMenuStartOnBoot.IsChecked = Settings.Default.startOnBoot;
             WindowMenuEdgeHide.IsChecked = Settings.Default.edgeHide;
-            List<OneLanguage> languages = Languages.getLanguages();
-            String nowLanguageFile = Settings.Default.language;
-            foreach(OneLanguage i in languages)
-            {
-                MenuItem menuItem = new MenuItem()
-                {
-                    Header = i.ShowName,
-                    IsCheckable = true,
-                    IsChecked = i.FileName == nowLanguageFile,
-                    Tag = i.FileName,
-                };
-                menuItem.Click += MenuItem_ChangeLanguageClick;
-                WindowMenuLanguage.Items.Add(menuItem);
-            }
-            if(nowLanguageFile == null || nowLanguageFile == "")
-            {
-                WindowMenuUserDefault.IsChecked = true;
-            }
-            WindowMenuUserDefault.Tag = "";
-            WindowMenuAutoUpdate.IsChecked = Settings.Default.AutoUpdate;
         }
 
         private void MenuItem_ChangeLanguageClick(object sender, RoutedEventArgs e)
@@ -82,35 +61,10 @@ namespace USTC.Software.hanyizhao.NetSpeedMonitor
         {
             if (Application.Current is App app)
             {
-                if (sender == WindowMenuExit)
-                {
-                    app.TryToExit();
-                }
-                else if (sender == WindowMenuStartOnBoot)
-                {
-                    bool startOnBoot = WindowMenuStartOnBoot.IsChecked;
-                    app.menuStartOnBoot.Checked = startOnBoot;
-                    app.TryToSetStartOnBoot(startOnBoot);
-                }
-                else if (sender == WindowMenuEdgeHide)
+                if (sender == WindowMenuEdgeHide)
                 {
                     bool edgeHide = WindowMenuEdgeHide.IsChecked;
-                    app.menuEdgeHide.Checked = edgeHide;
                     app.TryToSetEdgeHide(edgeHide);
-                }
-                else if (sender == WindowMenuAutoUpdate)
-                {
-                    bool autoUpdate = WindowMenuAutoUpdate.IsChecked;
-                    app.menuAutoUpdate.Checked = autoUpdate;
-                    app.TryToSetAutoUpdate(autoUpdate);
-                }
-                else if(sender == WindowMenuCheckUpdate)
-                {
-                    app.TryToCheckUpdate();
-                }
-                else if(sender == WindowMenuAbout)
-                {
-                    app.TryToShowAboutWindow();
                 }
             }
             

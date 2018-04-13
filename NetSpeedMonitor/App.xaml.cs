@@ -224,7 +224,6 @@ namespace USTC.Software.hanyizhao.NetSpeedMonitor
                 if (!screenLengthMaxOne)
                 {
                     screenLengthMaxOne = true;
-                    menuEdgeHide.Enabled = false;
                     mainWindow.WindowMenuEdgeHide.IsEnabled = false;
                     mainWindow.TryToEdgeShow();
                 }
@@ -234,7 +233,6 @@ namespace USTC.Software.hanyizhao.NetSpeedMonitor
                 if (screenLengthMaxOne)
                 {
                     screenLengthMaxOne = false;
-                    menuEdgeHide.Enabled = true;
                     mainWindow.WindowMenuEdgeHide.IsEnabled = true;
                     mainWindow.TryToEdgeHide();
                 }
@@ -253,11 +251,6 @@ namespace USTC.Software.hanyizhao.NetSpeedMonitor
         private void InitializeTray()
         {
             menuExit = new System.Windows.Forms.MenuItem(FindResource("Exit").ToString(), TrayMenu_Click);
-
-            menuEdgeHide = new System.Windows.Forms.MenuItem(FindResource("HideWhenCloseToEdge").ToString(), TrayMenu_Click)
-            {
-                Checked = Settings.Default.edgeHide
-            };
             menuStartOnBoot = new System.Windows.Forms.MenuItem(FindResource("StartOnBoot").ToString(), TrayMenu_Click)
             {
                 Checked = Settings.Default.startOnBoot
@@ -297,7 +290,7 @@ namespace USTC.Software.hanyizhao.NetSpeedMonitor
 
             menuAbout = new System.Windows.Forms.MenuItem(FindResource("AboutNetSpeedMonitor").ToString(), TrayMenu_Click);
             System.Windows.Forms.ContextMenu menu = new System.Windows.Forms.ContextMenu(new System.Windows.Forms.MenuItem[] {
-                menuStartOnBoot, menuEdgeHide, menuLanguage, menuUpdate, menuAbout, menuExit });
+                menuStartOnBoot, menuLanguage, menuUpdate, menuAbout, menuExit });
 
             notifyIcon = new System.Windows.Forms.NotifyIcon
             {
@@ -398,19 +391,11 @@ namespace USTC.Software.hanyizhao.NetSpeedMonitor
             else if (sender == menuStartOnBoot)
             {
                 menuStartOnBoot.Checked = !menuStartOnBoot.Checked;
-                mainWindow.WindowMenuStartOnBoot.IsChecked = menuStartOnBoot.Checked;
                 TryToSetStartOnBoot(menuStartOnBoot.Checked);
-            }
-            else if (sender == menuEdgeHide)
-            {
-                menuEdgeHide.Checked = !menuEdgeHide.Checked;
-                mainWindow.WindowMenuEdgeHide.IsChecked = menuEdgeHide.Checked;
-                TryToSetEdgeHide(menuEdgeHide.Checked);
             }
             else if (sender == menuAutoUpdate)
             {
                 menuAutoUpdate.Checked = !menuAutoUpdate.Checked;
-                mainWindow.WindowMenuAutoUpdate.IsChecked = menuAutoUpdate.Checked;
                 TryToSetAutoUpdate(menuAutoUpdate.Checked);
             }
             else if (sender == menuCheckUpdate)
@@ -437,7 +422,7 @@ namespace USTC.Software.hanyizhao.NetSpeedMonitor
             }));
         }
 
-        public System.Windows.Forms.MenuItem menuExit, menuEdgeHide, menuStartOnBoot, menuAutoUpdate, menuCheckUpdate, menuAbout;
+        public System.Windows.Forms.MenuItem menuExit, menuStartOnBoot, menuAutoUpdate, menuCheckUpdate, menuAbout;
 
         private System.Windows.Forms.NotifyIcon notifyIcon;
         private MainWindow mainWindow;
